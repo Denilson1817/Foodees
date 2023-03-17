@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "273011596509",
+    "project_id": "foodees-87c16",
+    "storage_bucket": "foodees-87c16.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:273011596509:android:005bad7352131c4fa34f34",
+        "android_client_info": {
+          "package_name": "com.denilsonperez.foodees"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "273011596509-8ilfpapdkoea2n0umollepp46nfouhup.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.denilsonperez.foodees",
+            "certificate_hash": "a552b39a3073f959a6e808aa616286650a766965"
+          }
+        },
+        {
+          "client_id": "273011596509-kraee3olnb91bfg8fc3nl2kavr6bh743.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmjI1YpATgRNF9ewkP57gLe8NbPiMtYPE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "273011596509-kraee3olnb91bfg8fc3nl2kavr6bh743.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

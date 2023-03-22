@@ -16,7 +16,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            app:cardBackgroundColor="@color/design_default_color_primary"
+            app:cardBackgroundColor="@color/primaryDark"
             app:cardUseCompatPadding="true"
             android:padding="0.2dp"
             app:cardCornerRadius="5dp">
@@ -79,7 +79,7 @@
                 android:layout_width="300dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center"
-                app:cardBackgroundColor="@color/design_default_color_primary">
+                app:cardBackgroundColor="@color/white">
 
                 <Button
                     android:id="@+id/btnDesayunos"
@@ -87,7 +87,8 @@
                     android:layout_height="match_parent"
                     android:text="@string/btnDesayunos"
                     android:textColor="@color/white"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp"
+                    app:cornerRadius="20sp" />
 
             </androidx.cardview.widget.CardView>
 
@@ -95,7 +96,6 @@
                 android:layout_width="300dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center"
-                app:cardBackgroundColor="@color/design_default_color_primary"
                 android:layout_marginTop="15sp">
 
                 <Button
@@ -104,7 +104,8 @@
                     android:layout_height="match_parent"
                     android:text="@string/btnComidas"
                     android:textColor="@color/white"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp"
+                    app:cornerRadius="20sp"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -112,7 +113,6 @@
                 android:layout_width="300dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center"
-                app:cardBackgroundColor="@color/design_default_color_primary"
                 android:layout_marginTop="15sp">
 
                 <Button
@@ -121,7 +121,8 @@
                     android:layout_height="match_parent"
                     android:text="@string/btnCenas"
                     android:textColor="@color/white"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp"
+                    app:cornerRadius="20sp"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -129,7 +130,6 @@
                 android:layout_width="300dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center"
-                app:cardBackgroundColor="@color/design_default_color_primary"
                 android:layout_marginTop="15sp">
 
                 <Button
@@ -138,7 +138,8 @@
                     android:layout_height="match_parent"
                     android:text="@string/btnFavoritos"
                     android:textColor="@color/white"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp"
+                    app:cornerRadius="20sp"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -150,7 +151,7 @@
             android:layout_height="wrap_content"
             android:text="@string/btnCerrarSesion"
             android:layout_marginTop="20dp"
-            />
+            app:cornerRadius="20sp"/>
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>

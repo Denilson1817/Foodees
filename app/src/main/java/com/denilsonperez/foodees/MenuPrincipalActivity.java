@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MenuPrincipalActivity extends AppCompatActivity {
-    Button cerrarSesion, verDesayunos;
+    Button cerrarSesion, verDesayunos, verComidas, verCenas;
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
 
@@ -48,6 +48,8 @@ public class MenuPrincipalActivity extends AppCompatActivity {
 
         cerrarSesion = findViewById(R.id.btnCerrarSesion);
         verDesayunos = findViewById(R.id.btnDesayunos);
+        verComidas = findViewById(R.id.btnComidas);
+        verCenas = findViewById(R.id.btnCenas);
 
         cerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +61,18 @@ public class MenuPrincipalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MenuPrincipalActivity.this,DesayunosActivity.class));
+            }
+        });
+        verComidas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MenuPrincipalActivity.this,ComidasActivity.class));
+            }
+        });
+        verCenas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MenuPrincipalActivity.this,CenasActivity.class));
             }
         });
     }
@@ -86,14 +100,10 @@ public class MenuPrincipalActivity extends AppCompatActivity {
                     //Setear los datos en los respectivos textview.
                     nombresPrincipal.setText(nombres);
                     correoPrincipal.setText(correo);
-
-
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
     }

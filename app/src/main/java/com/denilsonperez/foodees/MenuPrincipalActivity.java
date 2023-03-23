@@ -24,7 +24,7 @@ public class MenuPrincipalActivity extends AppCompatActivity {
     Button cerrarSesion, verDesayunos, verComidas, verCenas;
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
-
+    //Prueba de github
     TextView nombresPrincipal, correoPrincipal;
     ProgressBar progresoDatos;
 

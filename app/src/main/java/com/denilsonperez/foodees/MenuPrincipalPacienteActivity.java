@@ -21,86 +21,68 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MenuPrincipalActivity extends AppCompatActivity {
-    Button cerrarSesion, verDietas, crearPaciente, verPacientes;
+public class MenuPrincipalPacienteActivity extends AppCompatActivity {
+    Button cerrarSesion, verPlatillos, verRecetas;
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
-
-    TextView nombresPrincipal, correoPrincipal;
+    TextView nombresPrincipalP, correoPrincipalP;
     ProgressBar progresoDatos;
 
-    DatabaseReference Usuarios;
+    DatabaseReference Pacientes;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_principal);
+        setContentView(R.layout.activity_menu_principal_paciente);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Foodees");
 
-        nombresPrincipal = findViewById(R.id.nombresPrincipal);
-        correoPrincipal = findViewById(R.id.correosPrincipal);
-        progresoDatos = findViewById(R.id.progresoDatos);
+        nombresPrincipalP = findViewById(R.id.nombresPrincipalPaciente);
+        correoPrincipalP = findViewById(R.id.correosPrincipalPaciente);
+        progresoDatos = findViewById(R.id.progresoDatosPaciente);
 
-        Usuarios = FirebaseDatabase.getInstance().getReference("Usuarios");
+        Pacientes = FirebaseDatabase.getInstance().getReference("Pacientes");
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
 
         cerrarSesion = findViewById(R.id.btnCerrarSesion);
-        verDietas = findViewById(R.id.btnDietas);
-        crearPaciente = findViewById(R.id.btnAgregarPaciente);
-        verPacientes = findViewById(R.id.btnVisualizarPacientes);
+        verPlatillos = findViewById(R.id.btnPlatillos);
+        verRecetas = findViewById(R.id.btnVisualizarRecetas);
+
         cerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 salirAplicacion();
             }
         });
-        verDietas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MenuPrincipalActivity.this, DietasActivity.class));
-            }
-        });
-        crearPaciente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MenuPrincipalActivity.this, AgregarPacienteActivity.class));
-            }
-        });
-        verPacientes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MenuPrincipalActivity.this, VisualizarPacientesActivity.class));
-            }
-        });
     }
+
     private void salirAplicacion() {
         firebaseAuth.signOut();
-        startActivity(new Intent(MenuPrincipalActivity.this, MainActivity.class));
+        startActivity(new Intent(MenuPrincipalPacienteActivity.this, MainActivity.class));
         Toast.makeText(this, "Sesión finalizada", Toast.LENGTH_SHORT).show();
     }
 
     private void cargaDeDAtos(){
-        Usuarios.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+        Pacientes.child(user.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //Si el usuario existe
                 if(snapshot.exists()){
                     progresoDatos.setVisibility(View.GONE);
                     //Mostrar los texview
-                    nombresPrincipal.setVisibility(View.VISIBLE);
-                    correoPrincipal.setVisibility(View.VISIBLE);
+                    nombresPrincipalP.setVisibility(View.VISIBLE);
+                    correoPrincipalP.setVisibility(View.VISIBLE);
 
                     //Obtener los datos de firebase
                     String nombres = ""+snapshot.child("nombres").getValue();
                     String correo = ""+snapshot.child("correo").getValue();
 
                     //Setear los datos en los respectivos textview.
-                    nombresPrincipal.setText(nombres);
-                    correoPrincipal.setText(correo);
+                    nombresPrincipalP.setText(nombres);
+                    correoPrincipalP.setText(correo);
                 }
             }
             @Override
@@ -113,7 +95,7 @@ public class MenuPrincipalActivity extends AppCompatActivity {
             //El usuario a iniciado sesión
             cargaDeDAtos();
         }else{
-            startActivity(new Intent(MenuPrincipalActivity.this, MainActivity.class));
+            startActivity(new Intent(MenuPrincipalPacienteActivity.this, MainActivity.class));
             finish();
         }
     }

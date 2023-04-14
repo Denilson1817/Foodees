@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuPrincipalActivity">
+    tools:context=".MenuPrincipalPacienteActivity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/bienvenidoPrincipal"
+                    android:text="@string/bienvenidoPrincipalPaciente"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="20sp"/>
@@ -39,26 +39,26 @@
                 <ProgressBar
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/progresoDatos"
+                    android:id="@+id/progresoDatosPaciente"
                     android:layout_marginTop="10dp"
                     android:layout_gravity="center"/>
 
                 <TextView
-                    android:id="@+id/nombresPrincipal"
+                    android:id="@+id/nombresPrincipalPaciente"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
-                    android:text="@string/nombresPrincipal"
+                    android:text="@string/nombresPrincipalPaciente"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="20sp"/>
 
                 <TextView
-                    android:id="@+id/correosPrincipal"
+                    android:id="@+id/correosPrincipalPaciente"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
-                    android:text="@string/correoPrincipal"
+                    android:text="@string/correoPrincipalPaciente"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="20sp"/>
@@ -85,10 +85,10 @@
                 app:cardCornerRadius="20sp">
 
                 <Button
-                    android:id="@+id/btnDietas"
+                    android:id="@+id/btnPlatillos"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/btnDietas"
+                    android:text="@string/btnPlatillos"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="20sp"/>
@@ -103,33 +103,16 @@
                 app:cardCornerRadius="20sp">
 
                 <Button
-                    android:id="@+id/btnAgregarPaciente"
+                    android:id="@+id/btnVisualizarRecetas"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/btnAgregarPaciente"
+                    android:text="@string/btnVisualizarRecetas"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="20sp"/>
 
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="300dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="15sp"
-                app:cardCornerRadius="20sp">
-
-                <Button
-                    android:id="@+id/btnVisualizarPacientes"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/btnVisualizarPacientes"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textSize="20sp"/>
-
-            </androidx.cardview.widget.CardView>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

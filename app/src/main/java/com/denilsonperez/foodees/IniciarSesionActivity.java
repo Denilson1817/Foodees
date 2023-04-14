@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,15 +24,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class IniciarSesionActivity extends AppCompatActivity {
-    EditText correoIniciarSesion, contrasenaIniciarSesion;
+    EditText correoIniciarSesion, contrasenaIniciarSesion, codigoPacienteInicio;
     Button btnIniciarSesion;
     TextView nuevoUsuario;
     ProgressDialog progressDialog;
     FirebaseAuth firebaseAuth;
-
     //Para validar los datos
-    String correo = "", contrasena = "";
+    String correo = "", contrasena = "", codigoPaciente="";
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +47,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
         contrasenaIniciarSesion = findViewById(R.id.contrasenaIniciarSesion);
         btnIniciarSesion = findViewById(R.id.btnIniciarSesion);
         nuevoUsuario = findViewById(R.id.usuarioNuevo);
+        codigoPacienteInicio = findViewById(R.id.codigoPaciente);
 
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(IniciarSesionActivity.this);
@@ -66,6 +68,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
         });
     }
     private void validarDatos(){
+        codigoPaciente = codigoPacienteInicio.getText().toString();
         correo = correoIniciarSesion.getText().toString();
         contrasena = contrasenaIniciarSesion.getText().toString();
         if(!Patterns.EMAIL_ADDRESS.matcher(correo).matches()){
@@ -73,9 +76,40 @@ public class IniciarSesionActivity extends AppCompatActivity {
         }else if(TextUtils.isEmpty(contrasena)){
             Toast.makeText(this, "ingrese contraseña", Toast.LENGTH_SHORT).show();
         }else{
-            inicioDeUsuario();
+            if(TextUtils.isEmpty(codigoPaciente)){
+                inicioDeUsuario();
+            }else{
+                inicioDePaciente();
+            }
         }
     }
+
+    private void inicioDePaciente() {
+        progressDialog.setMessage("Iniciando sesión ...");
+        progressDialog.show();
+        firebaseAuth.signInWithEmailAndPassword(correo, contrasena)
+                .addOnCompleteListener(IniciarSesionActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            progressDialog.dismiss();
+                            FirebaseUser user = firebaseAuth.getCurrentUser();
+                            startActivity(new Intent(IniciarSesionActivity.this, MenuPrincipalPacienteActivity.class));
+                            Toast.makeText(IniciarSesionActivity.this, "Bienvenido Paciente(a)"+user.getEmail(), Toast.LENGTH_SHORT).show();
+                            finish();
+                        }else{
+                            progressDialog.dismiss();
+                            Toast.makeText(IniciarSesionActivity.this, "Verifique si su correo y contraseña son correctas", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(IniciarSesionActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
     private void inicioDeUsuario(){
         progressDialog.setMessage("Iniciando sesión ...");
         progressDialog.show();

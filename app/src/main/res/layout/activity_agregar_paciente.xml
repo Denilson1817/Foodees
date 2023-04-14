@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegistroActivity">
+    tools:context=".AgregarPacienteActivity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:text="@string/crearCuenta"
+            android:text="@string/crearCuentaPaciente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="25sp"
@@ -35,8 +35,26 @@
             android:layout_marginTop="15dp">
 
             <EditText
-                android:id="@+id/nombreEt"
-                android:hint="@string/nombreEt"
+                android:id="@+id/codigoPaciente"
+                android:hint="@string/codigoPaciente"
+                android:inputType="text"
+                android:padding="20dp"
+                android:drawableStart="@drawable/icono_nombres"
+                android:drawablePadding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/nombreEtPaciente"
+                android:hint="@string/nombreEtPaciente"
                 android:inputType="textPersonName|textCapWords"
                 android:padding="20dp"
                 android:drawableStart="@drawable/icono_nombres"
@@ -54,8 +72,8 @@
 
 
             <EditText
-                android:id="@+id/correoEt"
-                android:hint="@string/correoEt"
+                android:id="@+id/correoEtPaciente"
+                android:hint="@string/correoEtPaciente"
                 android:inputType="textEmailAddress"
                 android:padding="20dp"
                 android:drawableStart="@drawable/icono_correo"
@@ -73,8 +91,8 @@
             app:hintEnabled="false">
 
             <EditText
-                android:id="@+id/contrasenaEt"
-                android:hint="@string/contrasenaEt"
+                android:id="@+id/contrasenaEtPaciente"
+                android:hint="@string/contrasenaEtPaciente"
                 android:inputType="textPassword"
                 android:padding="20dp"
                 android:drawableStart="@drawable/icono_password"
@@ -92,9 +110,9 @@
             app:hintEnabled="false">
 
             <EditText
-                android:id="@+id/confirmarContrasenaEt"
+                android:id="@+id/confirmarContrasenaEtPaciente"
                 android:inputType="textPassword"
-                android:hint="@string/confirmarContrasenaEt"
+                android:hint="@string/confirmarContrasenaEtPaciente"
                 android:padding="20dp"
                 android:drawableStart="@drawable/icono_password"
                 android:drawablePadding="10dp"
@@ -104,24 +122,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/btnRegistrarUsuario"
-            android:text="@string/btnRegistrarUsuario"
+            android:id="@+id/btnRegistrarPaciente"
+            android:text="@string/btnRegistrarPaciente"
             android:layout_marginTop="15dp"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tengoUnaCuenta"
-            android:textSize="18sp"
-            android:layout_gravity="center"
-            android:textStyle="bold"
-            android:layout_marginTop="15dp"
-            android:text="@string/btnTengoUnaCuenta"/>
-
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

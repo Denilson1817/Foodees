@@ -41,6 +41,23 @@
                 android:layout_marginTop="15dp">
 
                 <EditText
+                    android:id="@+id/codigoPaciente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/icono_nombres"
+                    android:drawablePadding="10dp"
+                    android:hint="@string/codigoPacienteInicio"
+                    android:inputType="text"
+                    android:padding="20dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+                <EditText
                     android:id="@+id/correoIniciarSesion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -64,6 +81,7 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/icono_password"
                     android:drawablePadding="10dp"
+                    android:textColorHint="@color/black"
                     android:hint="@string/passwordLogin"
                     android:inputType="textPassword"
                     android:padding="20dp" />
@@ -74,6 +92,8 @@
                 android:id="@+id/btnIniciarSesion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textStyle="bold"
                 android:layout_marginTop="10dp"
                 android:text="@string/btnIniciarSesion" />
 

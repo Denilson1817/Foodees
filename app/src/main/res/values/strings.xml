@@ -13,9 +13,19 @@
     <string name="btnRegistrarUsuario">Registrar</string>
     <string name="btnTengoUnaCuenta">Tengo una cuenta</string>
 
+    <!--AgregarPacienteActivity-->
+    <string name="crearCuentaPaciente">Registrar Paciente</string>
+    <string name="codigoPaciente">Código del paciente</string>
+    <string name="nombreEtPaciente">Nombre del paciente</string>
+    <string name="correoEtPaciente">Correo</string>
+    <string name="contrasenaEtPaciente">Contraseña</string>
+    <string name="confirmarContrasenaEtPaciente">Confirmar contraseña</string>
+    <string name="btnRegistrarPaciente">Registrar Paciente</string>
+
     <!-- iniciarSesionActividad-->
     <string name="iniciarSesion">Iniciar Sesión</string>
     <string name="correologin">Correo</string>
+    <string name="codigoPacienteInicio">Ingresa tu código si cuentas con uno</string>
     <string name="passwordLogin">Contraseña</string>
     <string name="usuarioNuevo">¿No tienes una cuenta?</string>
 
@@ -23,9 +33,16 @@
     <string name="bienvenidoPrincipal">Bienvenido(a)</string>
     <string name="nombresPrincipal">--</string>
     <string name="correoPrincipal">--</string>
-    <string name="btnDesayunos">Desayunos</string>
-    <string name="btnComidas">Comidas</string>
-    <string name="btnCenas">Cenas</string>
-    <string name="btnFavoritos">Favoritos</string>
+    <string name="btnDietas">Dietas</string>
+    <string name="btnAgregarPaciente">Agregar paciente</string>
+    <string name="btnVisualizarPacientes">Visualizar pacientes</string>
     <string name="btnCerrarSesion">Cerrar Sesión</string>
+
+    <!-- MenuPrincipalPacienteActivity -->
+    <string name="bienvenidoPrincipalPaciente">Bienvenido(a)</string>
+    <string name="nombresPrincipalPaciente">--</string>
+    <string name="correoPrincipalPaciente">--</string>
+    <string name="btnPlatillos">Platillos</string>
+    <string name="btnVisualizarRecetas">Recetas</string>
+
 </resources>

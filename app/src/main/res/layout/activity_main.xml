@@ -32,6 +32,8 @@
         <Button
             android:id="@+id/btnIniciarSesion"
             android:text="@string/btnIniciarSesion"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -39,6 +41,8 @@
         <Button
             android:id="@+id/btnRegistro"
             android:text="@string/btnRegistro"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

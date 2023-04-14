@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class CenasActivity extends AppCompatActivity {
+public class VisualizarPacientesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cenas);
+        setContentView(R.layout.activity_visualizar_pacientes);
     }
 }

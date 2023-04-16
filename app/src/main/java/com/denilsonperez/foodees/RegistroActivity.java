@@ -123,7 +123,7 @@ public class RegistroActivity extends AppCompatActivity {
         Datos.put("uid",uid);
         Datos.put("correo",correo);
         Datos.put("nombres",nombre);
-        Datos.put("contraseña", password);
+        Datos.put("contrasena", password);
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Usuarios");
         databaseReference.child(uid)

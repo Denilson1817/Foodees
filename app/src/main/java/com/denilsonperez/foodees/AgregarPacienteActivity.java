@@ -23,16 +23,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AgregarPacienteActivity extends AppCompatActivity {
 
-    EditText codigoEtPaciente, nombreEtPaciente, correoEtPaciente, contrasenaEtPaciente, confirmarContrasenaEtPaciente;
+    EditText nombreEtPaciente, correoEtPaciente, contrasenaEtPaciente, confirmarContrasenaEtPaciente;
     Button btnRegistrarPaciente;
 
     FirebaseAuth firebaseAuth;
     ProgressDialog progressDialog;
 
-    String nombreP = "", correoP = "", passwordP = "", confirmarPasswordP = "", codigoP="";
+    String nombreP = "", correoP = "", passwordP = "", confirmarPasswordP = "";
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -46,7 +48,6 @@ public class AgregarPacienteActivity extends AppCompatActivity {
         actionBar.setDisplayShowHomeEnabled(true);
 
         //inicializar las vistas
-        codigoEtPaciente = findViewById(R.id.codigoPaciente);
         nombreEtPaciente = findViewById(R.id.nombreEtPaciente);
         correoEtPaciente = findViewById(R.id.correoEtPaciente);
         contrasenaEtPaciente = findViewById(R.id.contrasenaEtPaciente);
@@ -69,7 +70,6 @@ public class AgregarPacienteActivity extends AppCompatActivity {
     }
 
     private void validarDatos() {
-        codigoP = codigoEtPaciente.getText().toString();
         nombreP = nombreEtPaciente.getText().toString();
         correoP = correoEtPaciente.getText().toString();
         passwordP = contrasenaEtPaciente.getText().toString();
@@ -77,11 +77,10 @@ public class AgregarPacienteActivity extends AppCompatActivity {
 
         if(TextUtils.isEmpty(nombreP)){
             Toast.makeText(this, "Ingrese nombre", Toast.LENGTH_SHORT).show();
-        }else if(!Patterns.EMAIL_ADDRESS.matcher(correoP).matches()){
-            Toast.makeText(this, "Ingrese correo", Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(codigoP)) {
-            Toast.makeText(this, "Ingrese un código para el paciente", Toast.LENGTH_SHORT).show();
-        } else if(TextUtils.isEmpty(passwordP)){
+        }else if(esCorreoPaciente(correoP) == false){
+            //!Patterns.EMAIL_ADDRESS.matcher(correoP).matches()
+                Toast.makeText(this, "Ingrese un correo válido", Toast.LENGTH_SHORT).show();
+        }else if(TextUtils.isEmpty(passwordP)){
             Toast.makeText(this, "Ingrese contraseña", Toast.LENGTH_SHORT).show();
         }else if(TextUtils.isEmpty(confirmarPasswordP)){
             Toast.makeText(this, "Confirme contraseña", Toast.LENGTH_SHORT).show();
@@ -90,6 +89,12 @@ public class AgregarPacienteActivity extends AppCompatActivity {
         }else{
             crearCuenta();
         }
+    }
+    public boolean esCorreoPaciente(String correoP){
+        String pacienteRegex = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@paciente.com$";
+        Pattern pattern = Pattern.compile(pacienteRegex);
+        Matcher matcher = pattern.matcher(correoP);
+        return matcher.matches();
     }
 
     private void crearCuenta() {
@@ -121,12 +126,11 @@ public class AgregarPacienteActivity extends AppCompatActivity {
         //Configurar datos para agregar en la base de datos
         HashMap<String, String> Datos = new HashMap<>();
         Datos.put("uid",uid);
-        Datos.put("codigoPaciente", codigoP);
         Datos.put("correo",correoP);
         Datos.put("nombres",nombreP);
-        Datos.put("contraseña", passwordP);
+        Datos.put("contrasena", passwordP);
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Pacientes");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Paciente");
         databaseReference.child(uid)
                 .setValue(Datos)
                 .addOnSuccessListener(new OnSuccessListener<Void>(){

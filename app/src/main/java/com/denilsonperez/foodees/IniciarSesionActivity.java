@@ -23,14 +23,17 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class IniciarSesionActivity extends AppCompatActivity {
-    EditText correoIniciarSesion, contrasenaIniciarSesion, codigoPacienteInicio;
+    EditText correoIniciarSesion, contrasenaIniciarSesion;
     Button btnIniciarSesion;
     TextView nuevoUsuario;
     ProgressDialog progressDialog;
     FirebaseAuth firebaseAuth;
     //Para validar los datos
-    String correo = "", contrasena = "", codigoPaciente="";
+    String correo = "", contrasena = "";
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -47,7 +50,6 @@ public class IniciarSesionActivity extends AppCompatActivity {
         contrasenaIniciarSesion = findViewById(R.id.contrasenaIniciarSesion);
         btnIniciarSesion = findViewById(R.id.btnIniciarSesion);
         nuevoUsuario = findViewById(R.id.usuarioNuevo);
-        codigoPacienteInicio = findViewById(R.id.codigoPaciente);
 
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(IniciarSesionActivity.this);
@@ -68,7 +70,6 @@ public class IniciarSesionActivity extends AppCompatActivity {
         });
     }
     private void validarDatos(){
-        codigoPaciente = codigoPacienteInicio.getText().toString();
         correo = correoIniciarSesion.getText().toString();
         contrasena = contrasenaIniciarSesion.getText().toString();
         if(!Patterns.EMAIL_ADDRESS.matcher(correo).matches()){
@@ -76,12 +77,20 @@ public class IniciarSesionActivity extends AppCompatActivity {
         }else if(TextUtils.isEmpty(contrasena)){
             Toast.makeText(this, "ingrese contraseña", Toast.LENGTH_SHORT).show();
         }else{
-            if(TextUtils.isEmpty(codigoPaciente)){
-                inicioDeUsuario();
-            }else{
+            if(esCorreoPaciente(correo) == true){
                 inicioDePaciente();
+                Toast.makeText(this, "El correo es valido perro", Toast.LENGTH_SHORT).show();
+            }else{
+                inicioDeUsuario();
             }
         }
+    }
+
+    public boolean esCorreoPaciente(String correo){
+        String pacienteRegex = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@paciente.com$";
+        Pattern pattern = Pattern.compile(pacienteRegex);
+        Matcher matcher = pattern.matcher(correo);
+        return matcher.matches();
     }
 
     private void inicioDePaciente() {

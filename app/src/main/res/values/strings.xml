@@ -15,9 +15,8 @@
 
     <!--AgregarPacienteActivity-->
     <string name="crearCuentaPaciente">Registrar Paciente</string>
-    <string name="codigoPaciente">Código del paciente</string>
     <string name="nombreEtPaciente">Nombre del paciente</string>
-    <string name="correoEtPaciente">Correo</string>
+    <string name="correoEtPaciente">Correo@paciente.com</string>
     <string name="contrasenaEtPaciente">Contraseña</string>
     <string name="confirmarContrasenaEtPaciente">Confirmar contraseña</string>
     <string name="btnRegistrarPaciente">Registrar Paciente</string>
@@ -25,7 +24,6 @@
     <!-- iniciarSesionActividad-->
     <string name="iniciarSesion">Iniciar Sesión</string>
     <string name="correologin">Correo</string>
-    <string name="codigoPacienteInicio">Ingresa tu código si cuentas con uno</string>
     <string name="passwordLogin">Contraseña</string>
     <string name="usuarioNuevo">¿No tienes una cuenta?</string>
 

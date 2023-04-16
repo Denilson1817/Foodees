@@ -32,35 +32,17 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp">
-
-            <EditText
-                android:id="@+id/codigoPaciente"
-                android:hint="@string/codigoPaciente"
-                android:inputType="text"
-                android:padding="20dp"
-                android:drawableStart="@drawable/icono_nombres"
-                android:drawablePadding="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
 
             <EditText
                 android:id="@+id/nombreEtPaciente"
-                android:hint="@string/nombreEtPaciente"
-                android:inputType="textPersonName|textCapWords"
-                android:padding="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:drawableStart="@drawable/icono_nombres"
                 android:drawablePadding="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:hint="@string/nombreEtPaciente"
+                android:inputType="textPersonName|textCapWords"
+                android:padding="20dp" />
 
 
         </com.google.android.material.textfield.TextInputLayout>

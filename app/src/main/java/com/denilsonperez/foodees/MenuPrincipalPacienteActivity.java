@@ -61,7 +61,7 @@ public class MenuPrincipalPacienteActivity extends AppCompatActivity {
 
     private void salirAplicacion() {
         firebaseAuth.signOut();
-        startActivity(new Intent(MenuPrincipalPacienteActivity.this, MainActivity.class));
+        startActivity(new Intent(MenuPrincipalPacienteActivity.this, IniciarSesionActivity.class));
         Toast.makeText(this, "Sesión finalizada", Toast.LENGTH_SHORT).show();
     }
 
@@ -95,7 +95,7 @@ public class MenuPrincipalPacienteActivity extends AppCompatActivity {
             //El usuario a iniciado sesión
             cargaDeDAtos();
         }else{
-            startActivity(new Intent(MenuPrincipalPacienteActivity.this, MainActivity.class));
+            startActivity(new Intent(MenuPrincipalPacienteActivity.this, IniciarSesionActivity.class));
             finish();
         }
     }

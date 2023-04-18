@@ -40,15 +40,7 @@
         </activity>
         <activity
             android:name=".MenuPrincipalActivity"
-            android:exported="true">
-            <intent-filter>
-
-                <!-- codigo para iniciar esta pantalla -->
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -69,20 +61,14 @@
         </activity>
         <activity
             android:name=".PantallaDeCargaActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
+
+                <!-- codigo para iniciar esta pantalla -->
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

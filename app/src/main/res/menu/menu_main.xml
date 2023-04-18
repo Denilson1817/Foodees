@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item android:id="@+id/icon_add_dieta"
+        android:icon="@drawable/ic_add_dieta"
+        android:title="Edit Done"
+        app:showAsAction="always"/>
+
     <item android:id="@+id/icon_actualizar"
         android:icon="@drawable/ic_actualizar"
         android:title="Edit Done"

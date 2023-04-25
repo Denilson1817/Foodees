@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.denilsonperez.foodees.Model.Paciente;
+import com.denilsonperez.foodees.Model.Platillo;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,54 +25,53 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-public class VisualizarPacientesActivity extends AppCompatActivity {
-    private List<Paciente> listDatosPacientes = new ArrayList<Paciente>();
+public class AdminPlatillosActivity extends AppCompatActivity {
+    private List<Platillo> listDatosPlatillos = new ArrayList<>();
     private int selectedItemPosition = -1;
-    ArrayAdapter<Paciente> arrayAdapterPaciente;
-    EditText txtNombrePaciente , txtCorreoPaciente, txtContrasenaPaciente;
-    ListView lvDatosPacientes;
+    ArrayAdapter<Platillo>arrayAdapterPlatillo;
+    EditText txtPlatillo;
+    ListView lvDatosPlatillos;
     //Para el manejo de datos en firebase
     FirebaseDatabase firebaseDataBase;
     DatabaseReference databaseReference;
-    Paciente pacienteSeleccionado;
+    Platillo platilloSeleccionado;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_visualizar_pacientes);
+        setContentView(R.layout.activity_admin_platillos);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Foodees");
-        txtNombrePaciente = findViewById(R.id.txtNombrePaciente);
-        txtCorreoPaciente = findViewById(R.id.txtCorreoPaciente);
-        txtContrasenaPaciente = findViewById(R.id.txtContrasenaPaciente);
-        lvDatosPacientes = findViewById(R.id.lvDatosPacientes);
+        txtPlatillo = findViewById(R.id.txtPlatillos);
+        lvDatosPlatillos = findViewById(R.id.lvDatosPlatillos);
         inicializarFirebase();
         ListarDatos();
 
-        lvDatosPacientes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lvDatosPlatillos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 selectedItemPosition = i;
-                pacienteSeleccionado = (Paciente) adapterView.getItemAtPosition(i);
-                txtNombrePaciente.setText(pacienteSeleccionado.getNombres());
-                txtCorreoPaciente.setText(pacienteSeleccionado.getCorreo());
-                txtContrasenaPaciente.setText(pacienteSeleccionado.getContrasena());
+                platilloSeleccionado = (Platillo) adapterView.getItemAtPosition(i);
+                txtPlatillo.setText(platilloSeleccionado.getPlato());
             }
         });
     }
 
     private void ListarDatos() {
-        databaseReference.child("Paciente").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("Platillo").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                listDatosPacientes.clear();
+                listDatosPlatillos.clear();
                 for(DataSnapshot objSnapShot : snapshot.getChildren()){
-                    Paciente p = objSnapShot.getValue(Paciente.class);
-                    listDatosPacientes.add(p);
+                    Platillo p = objSnapShot.getValue(Platillo.class);
+                    listDatosPlatillos.add(p);
 
-                    arrayAdapterPaciente = new ArrayAdapter<Paciente>(VisualizarPacientesActivity.this, android.R.layout.simple_list_item_1, listDatosPacientes);
-                    lvDatosPacientes.setAdapter(arrayAdapterPaciente);
+                    arrayAdapterPlatillo = new ArrayAdapter<Platillo>(AdminPlatillosActivity.this, android.R.layout.simple_list_item_1, listDatosPlatillos);
+                    lvDatosPlatillos.setAdapter(arrayAdapterPlatillo);
                 }
+
             }
 
             @Override
@@ -97,32 +96,34 @@ public class VisualizarPacientesActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        String platillo = txtPlatillo.getText().toString();
         switch (item.getItemId()){
             case R.id.icon_add_dieta:{
-                if(selectedItemPosition != -1){
-                    Paciente p = new Paciente();
-                    startActivity(new Intent(VisualizarPacientesActivity.this, AgregarDietasActivity.class));
-                    Toast.makeText(this, "Agregar dieta", Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(this, "Selecciona un elemento", Toast.LENGTH_SHORT).show();
+                if(platillo.equals("")){
+                    validacion();
+                }else{
+                    Platillo p = new Platillo();
+                    p.setUid(UUID.randomUUID().toString());
+                    p.setPlato(platillo);
+                    databaseReference.child("Platillo").child(p.getUid()).setValue(p);
+                    Toast.makeText(this, "Agregado", Toast.LENGTH_SHORT).show();
+                    limpiarEditText();
                 }
                 break;
             }
             case R.id.icon_actualizar:{
-                Paciente p = new Paciente();
-                p.setUid(pacienteSeleccionado.getUid());
-                p.setNombres(txtNombrePaciente.getText().toString().trim()); //El metodo trim hace que se ignoren los espacios en blanco.
-                p.setCorreo(txtCorreoPaciente.getText().toString().trim());
-                p.setContrasena(txtContrasenaPaciente.getText().toString().trim());
-                databaseReference.child("Paciente").child(p.getUid()).setValue(p);
+                Platillo p = new Platillo();
+                p.setUid(platilloSeleccionado.getUid());
+                p.setPlato(txtPlatillo.getText().toString().trim());
+                databaseReference.child("Platillo").child(p.getUid()).setValue(p);
                 Toast.makeText(this, "Actualizado", Toast.LENGTH_SHORT).show();
                 limpiarEditText();
                 break;
             }
             case R.id.icon_delete:{
-                Paciente p = new Paciente();
-                p.setUid(pacienteSeleccionado.getUid());
-                databaseReference.child("Paciente").child(p.getUid()).removeValue();
+                Platillo p = new Platillo();
+                p.setUid(platilloSeleccionado.getUid());
+                databaseReference.child("Platillo").child(p.getUid()).removeValue();
                 Toast.makeText(this, "Eliminado", Toast.LENGTH_SHORT).show();
                 limpiarEditText();
                 break;
@@ -131,10 +132,15 @@ public class VisualizarPacientesActivity extends AppCompatActivity {
         }
         return true;
     }
-    private void limpiarEditText() {
-        txtNombrePaciente.setText("");
-        txtCorreoPaciente.setText("");
-        txtContrasenaPaciente.setText("");
+
+    private void validacion() {
+        String platillo = txtPlatillo.getText().toString();
+        if (platillo.equals("")){
+            txtPlatillo.setError("Campo requerido");
+        }
     }
 
+    private void limpiarEditText() {
+        txtPlatillo.setText("");
+    }
 }

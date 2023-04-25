@@ -31,7 +31,7 @@
     <string name="bienvenidoPrincipal">Bienvenido(a)</string>
     <string name="nombresPrincipal">--</string>
     <string name="correoPrincipal">--</string>
-    <string name="btnDietas">Dietas</string>
+    <string name="btnAdminPlantillos">Administrar platillos</string>
     <string name="btnAgregarPaciente">Agregar paciente</string>
     <string name="btnVisualizarPacientes">Visualizar pacientes</string>
     <string name="btnCerrarSesion">Cerrar Sesión</string>
@@ -43,4 +43,5 @@
     <string name="btnPlatillos">Platillos</string>
     <string name="btnVisualizarRecetas">Recetas</string>
 
+    <string name="agregarDieta">Agregar Dieta</string>
 </resources>

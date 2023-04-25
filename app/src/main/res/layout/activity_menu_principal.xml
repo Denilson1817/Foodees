@@ -85,10 +85,10 @@
                 app:cardCornerRadius="20sp">
 
                 <Button
-                    android:id="@+id/btnDietas"
+                    android:id="@+id/btnAdminPlatillos"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/btnDietas"
+                    android:text="@string/btnAdminPlantillos"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="20sp"/>

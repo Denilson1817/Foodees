@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MenuPrincipalActivity extends AppCompatActivity {
-    Button cerrarSesion, verDietas, crearPaciente, verPacientes;
+    Button cerrarSesion, verAdminPlatillos, crearPaciente, verPacientes;
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
 
@@ -49,7 +49,7 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         user = firebaseAuth.getCurrentUser();
 
         cerrarSesion = findViewById(R.id.btnCerrarSesion);
-        verDietas = findViewById(R.id.btnDietas);
+        verAdminPlatillos = findViewById(R.id.btnAdminPlatillos);
         crearPaciente = findViewById(R.id.btnAgregarPaciente);
         verPacientes = findViewById(R.id.btnVisualizarPacientes);
         cerrarSesion.setOnClickListener(new View.OnClickListener() {
@@ -58,10 +58,10 @@ public class MenuPrincipalActivity extends AppCompatActivity {
                 salirAplicacion();
             }
         });
-        verDietas.setOnClickListener(new View.OnClickListener() {
+        verAdminPlatillos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MenuPrincipalActivity.this, DietasActivity.class));
+                startActivity(new Intent(MenuPrincipalActivity.this, AdminPlatillosActivity.class));
             }
         });
         crearPaciente.setOnClickListener(new View.OnClickListener() {

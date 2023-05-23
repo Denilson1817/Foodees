@@ -12,7 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Platillo">
-
+        <ImageView
+            android:id="@+id/myImage"
+            android:layout_width="400dp"
+            android:layout_height="90dp"
+            android:src="@drawable/comida"
+            />
         <EditText
             android:id="@+id/txtPlatillos"
             android:layout_width="match_parent"

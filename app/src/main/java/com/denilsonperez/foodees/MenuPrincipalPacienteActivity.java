@@ -8,11 +8,15 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.denilsonperez.foodees.Model.Platillo;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,15 +25,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MenuPrincipalPacienteActivity extends AppCompatActivity {
-    Button cerrarSesion, verPlatillos, verRecetas;
+    Button cerrarSesion;
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
     TextView nombresPrincipalP, correoPrincipalP;
     ProgressBar progresoDatos;
-
     DatabaseReference Pacientes;
-
+    Intent recibir;
+    String Lista;
+    ListView listaReceta;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +52,16 @@ public class MenuPrincipalPacienteActivity extends AppCompatActivity {
         nombresPrincipalP = findViewById(R.id.nombresPrincipalPaciente);
         correoPrincipalP = findViewById(R.id.correosPrincipalPaciente);
         progresoDatos = findViewById(R.id.progresoDatosPaciente);
+        listaReceta = findViewById(R.id.ListaReceta);
 
-        Pacientes = FirebaseDatabase.getInstance().getReference("Pacientes");
+        Pacientes = FirebaseDatabase.getInstance().getReference("Paciente");
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
 
         cerrarSesion = findViewById(R.id.btnCerrarSesion);
-        verPlatillos = findViewById(R.id.btnPlatillos);
-        verRecetas = findViewById(R.id.btnVisualizarRecetas);
+        inicializarFirebase();
+        listarDatos();
+
 
         cerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,10 +70,43 @@ public class MenuPrincipalPacienteActivity extends AppCompatActivity {
             }
         });
     }
+    private void inicializarFirebase() {
+        FirebaseApp.initializeApp(this);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+    }
+    private void listarDatos(){
+        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference pacienteRef = databaseRef.child("Paciente");
+        pacienteRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArrayList<String> recetasList = new ArrayList<>();
+                //listaDatosPlatillo.clear();
+                for (DataSnapshot snapshot1 : snapshot.getChildren()){
+                    String receta = snapshot1.child("Receta").getValue(String.class);
+                    // Agrega el valor de "Receta" a la lista
+                    recetasList.add(receta);
+                }
+                // Configura el ListView con los datos obtenidos
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(MenuPrincipalPacienteActivity.this, android.R.layout.simple_list_item_1, recetasList);
+                listaReceta.setAdapter(adapter);
+                    //arrayAdapterPlatillo = new ArrayAdapter<Platillo>(MenuPrincipalPacienteActivity.this, android.R.layout.simple_list_item_1, listaDatosPlatillo);
+                    //lvDatosPlatillo.setAdapter(arrayAdapterPlatillo);
 
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
     private void salirAplicacion() {
         firebaseAuth.signOut();
-        startActivity(new Intent(MenuPrincipalPacienteActivity.this, IniciarSesionActivity.class));
+        //startActivity(new Intent(MenuPrincipalPacienteActivity.this, IniciarSesionActivity.class));
+        Intent intent = new Intent(MenuPrincipalPacienteActivity.this, IniciarSesionActivity.class);
+        intent.putExtra("Lista",Lista);
+        startActivity(intent);
         Toast.makeText(this, "Sesión finalizada", Toast.LENGTH_SHORT).show();
     }
 
@@ -92,7 +137,6 @@ public class MenuPrincipalPacienteActivity extends AppCompatActivity {
     }
     private void comprobarInicioSesion(){
         if(user!=null){
-            //El usuario a iniciado sesión
             cargaDeDAtos();
         }else{
             startActivity(new Intent(MenuPrincipalPacienteActivity.this, IniciarSesionActivity.class));

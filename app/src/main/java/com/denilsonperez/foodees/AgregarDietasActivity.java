@@ -19,6 +19,7 @@ import com.denilsonperez.foodees.Model.Paciente;
 import com.denilsonperez.foodees.Model.Platillo;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,7 +38,8 @@ public class AgregarDietasActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDataBase;
     DatabaseReference databaseReference;
     Platillo platilloSeleccionado;
-
+    String idPaciente;
+    Intent recibir;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +49,10 @@ public class AgregarDietasActivity extends AppCompatActivity {
         lvDatosPlatillos = findViewById(R.id.lvDatosPlatillos);
         inicializarFirebase();
         ListarDatos();
+        recibir = getIntent();
+        idPaciente = recibir.getStringExtra("idPaciente");
+        System.out.println("IDPACIENTE: "+idPaciente);
+
         lvDatosPlatillos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -93,17 +99,24 @@ public class AgregarDietasActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference childRef = databaseRef.child("Paciente").child(idPaciente);
         int id = item.getItemId();
         switch (item.getItemId()){
             case R.id.item_agregarDieta:{
                 if(selectedItemPosition != -1){
-                    String itemSelected = "Selected items: \n";
+                    String itemSelected = "\n";
                     for(int i=0;i<lvDatosPlatillos.getCount();i++){
                         if(lvDatosPlatillos.isItemChecked(i)){
                             itemSelected += lvDatosPlatillos.getItemAtPosition(i) + "\n";
                         }
                     }
-                    Toast.makeText(this, itemSelected, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Platillo agregado", Toast.LENGTH_SHORT).show();
+                    //Intent intent = new Intent(AgregarDietasActivity.this, MenuPrincipalPacienteActivity.class);
+                    //intent.putExtra("Lista",itemSelected);
+                    //startActivity(intent);
+                    childRef.child("Receta").setValue(itemSelected);
+
                 }else {
                     Toast.makeText(this, "Selecciona un elemento", Toast.LENGTH_SHORT).show();
                 }
@@ -113,5 +126,4 @@ public class AgregarDietasActivity extends AppCompatActivity {
         }
         return true;
     }
-
 }

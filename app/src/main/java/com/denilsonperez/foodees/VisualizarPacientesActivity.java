@@ -101,7 +101,14 @@ public class VisualizarPacientesActivity extends AppCompatActivity {
             case R.id.icon_add_dieta:{
                 if(selectedItemPosition != -1){
                     Paciente p = new Paciente();
-                    startActivity(new Intent(VisualizarPacientesActivity.this, AgregarDietasActivity.class));
+                    String idPaciente="";
+                    //Pasar dieta al paciente
+                    idPaciente = pacienteSeleccionado.getUid();
+
+                    //startActivity(new Intent(VisualizarPacientesActivity.this, AgregarDietasActivity.class));
+                    Intent intent = new Intent(VisualizarPacientesActivity.this, AgregarDietasActivity.class);
+                    intent.putExtra("idPaciente", idPaciente);
+                    startActivity(intent);
                     Toast.makeText(this, "Agregar dieta", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(this, "Selecciona un elemento", Toast.LENGTH_SHORT).show();

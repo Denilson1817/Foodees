@@ -33,8 +33,8 @@ public class IniciarSesionActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     FirebaseAuth firebaseAuth;
     //Para validar los datos
-    String correo = "", contrasena = "";
-
+    String correo = "", contrasena = "", Lista;
+    Intent recibir;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +79,6 @@ public class IniciarSesionActivity extends AppCompatActivity {
         }else{
             if(esCorreoPaciente(correo) == true){
                 inicioDePaciente();
-                Toast.makeText(this, "El correo es valido perro", Toast.LENGTH_SHORT).show();
             }else{
                 inicioDeUsuario();
             }
@@ -103,7 +102,12 @@ public class IniciarSesionActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             progressDialog.dismiss();
                             FirebaseUser user = firebaseAuth.getCurrentUser();
-                            startActivity(new Intent(IniciarSesionActivity.this, MenuPrincipalPacienteActivity.class));
+                            recibir = getIntent();
+                            Lista = recibir.getStringExtra("Lista");
+                            //startActivity(new Intent(IniciarSesionActivity.this, MenuPrincipalPacienteActivity.class));
+                            Intent intent = new Intent(IniciarSesionActivity.this, MenuPrincipalPacienteActivity.class);
+                            intent.putExtra("Lista",Lista);
+                            startActivity(intent);
                             Toast.makeText(IniciarSesionActivity.this, "Bienvenido Paciente(a)"+user.getEmail(), Toast.LENGTH_SHORT).show();
                             finish();
                         }else{

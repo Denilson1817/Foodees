@@ -43,7 +43,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Iniciar Sesion");
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        //actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
         correoIniciarSesion = findViewById(R.id.correoIniciarSesion);

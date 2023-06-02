@@ -34,7 +34,7 @@
         android:textSize="30sp"
         android:layout_margin="10dp"
         android:layout_gravity="center"
-        android:text="Lista de platillos" />
+        android:text="Menú sugerido" />
 
     <ListView
         android:id="@+id/lvDatosPlatillos"

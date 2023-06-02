@@ -79,7 +79,7 @@
                 android:backgroundTint="#61E167"
                 android:text="@string/btnIniciarSesion"
                 android:textColor="@color/black"
-                app:cornerRadius="40sp"
+                app:cornerRadius="0sp"
                 android:textStyle="bold" />
 
             <TextView

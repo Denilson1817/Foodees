@@ -44,7 +44,7 @@ public class AgregarPacienteActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Registrar");
-        actionBar.setDisplayHomeAsUpEnabled(true);
+       // actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
         //inicializar las vistas

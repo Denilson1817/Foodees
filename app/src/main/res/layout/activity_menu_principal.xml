@@ -10,24 +10,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp"
+        android:padding="0dp"
         android:gravity="center">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:padding="0.2dp"
+            android:padding="0.1dp"
             app:cardBackgroundColor="#61E167"
-            app:cardCornerRadius="20dp"
-
+            app:cardCornerRadius="0dp"
             app:cardUseCompatPadding="true">
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="402dp"
+                android:layout_width="400dp"
                 android:layout_height="120dp"
                 android:orientation="vertical"
-
-                android:padding="10dp">
+                android:padding="0dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -43,7 +41,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp" />
+                    android:layout_marginTop="0dp" />
 
                 <TextView
                     android:id="@+id/nombresPrincipal"
@@ -72,7 +70,16 @@
         </androidx.cardview.widget.CardView>
 
         <!-- Botones de menu -->
-
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="300dp"
+            android:layout_height="90dp"
+            android:alpha=".90"
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ficehro"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="0dp" />
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -80,81 +87,94 @@
             android:paddingTop="0dp"
             android:layout_gravity="center">
 
-            <ImageView
-                android:id="@+id/th"
-                android:layout_width="100dp"
-                android:layout_height="90dp"
-                android:src="@drawable/th"
-                />
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="300dp"
-                android:layout_height="80dp"
+
+            <LinearLayout
+                android:layout_width="250dp"
+                android:layout_height="150dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="0sp"
+                android:layout_below="@id/myImageView"
                 app:cardCornerRadius="20sp">
+
+                <ImageButton
+                    android:id="@+id/imageButton2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:backgroundTint="#00FFFFFF"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/th" />
 
                 <Button
                     android:id="@+id/btnAdminPlatillos"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="#61E167"
-                    android:text="@string/btnAdminPlantillos"
-                    android:textColor="@color/black"
+                    android:layout_width="160dp"
+                    android:layout_height="140dp"
+                    android:layout_toEndOf="@+id/myImageView"
+                    android:backgroundTint="#18529D"
+                    android:text="Platillo"
+                    android:textColor="@color/white"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:cornerRadius="40sp" />
+                    android:textStyle="bold" />
 
-            </androidx.cardview.widget.CardView>
-            <ImageView
-                android:id="@+id/persona"
-                android:layout_width="100dp"
-                android:layout_height="90dp"
-                android:src="@drawable/persona"
-                />
-            <androidx.cardview.widget.CardView
-                android:layout_width="300dp"
-                android:layout_height="80dp"
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="250dp"
+                android:layout_height="150dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="0sp"
+                android:layout_below="@id/myImageView"
                 app:cardCornerRadius="20sp">
+
+                <ImageButton
+                    android:id="@+id/imageButton3"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="#00FFFFFF"
+                    android:backgroundTint="#00FFFFFF"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/doctor" />
 
                 <Button
                     android:id="@+id/btnAgregarPaciente"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="160dp"
+                    android:layout_height="140dp"
                     android:backgroundTint="#61E167"
-                    android:text="@string/btnAgregarPaciente"
+                    android:text=" Agregar Paciente "
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    app:cornerRadius="400sp"
                     android:textStyle="bold" />
 
-            </androidx.cardview.widget.CardView>
-            <ImageView
-                android:id="@+id/paciente"
-                android:layout_width="100dp"
-                android:layout_height="90dp"
-                android:src="@drawable/paciente"
-                />
-            <androidx.cardview.widget.CardView
-                android:layout_width="300dp"
-                android:layout_height="80dp"
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="250dp"
+                android:layout_height="150dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="0sp"
+                android:layout_below="@id/myImageView"
                 app:cardCornerRadius="20sp">
+
+                <ImageButton
+                    android:id="@+id/imageButton4"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:backgroundTint="#00FFFFFF"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/persona" />
 
                 <Button
                     android:id="@+id/btnVisualizarPacientes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="#61E167"
-                    android:text="@string/btnVisualizarPacientes"
-                    android:textColor="@color/black"
+                    android:layout_width="160dp"
+                    android:layout_height="140dp"
+                    android:backgroundTint="#18529D"
+                    android:text="Ver Paciente"
+                    android:textColor="@color/white"
                     android:textSize="20sp"
-                    app:cornerRadius="30sp"
                     android:textStyle="bold" />
 
-            </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
 
 
@@ -164,12 +184,12 @@
             android:id="@+id/btnCerrarSesion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="0dp"
             android:backgroundTint="#61E167"
             android:text="@string/btnCerrarSesion"
             android:textColor="@color/black"
             android:textStyle="bold"
-            app:cornerRadius="20sp" />
+            />
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>

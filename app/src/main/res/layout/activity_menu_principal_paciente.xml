@@ -16,7 +16,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            app:cardBackgroundColor="@color/purple_500"
+            app:cardBackgroundColor="#61E167"
             app:cardUseCompatPadding="true"
             android:padding="0.2dp"
             app:cardCornerRadius="5dp">
@@ -31,7 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/bienvenidoPrincipalPaciente"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textStyle="bold"
                     android:textSize="20sp"/>
 
@@ -68,6 +68,12 @@
 
         </androidx.cardview.widget.CardView>
 
+        <ImageView
+            android:id="@+id/myImage"
+            android:layout_width="400dp"
+            android:layout_height="90dp"
+            android:src="@drawable/sano"
+            />
 
         <ListView
             android:id="@+id/ListaReceta"
@@ -80,11 +86,12 @@
             android:id="@+id/btnCerrarSesion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="350dp"
+            android:backgroundTint="#18529D"
             android:text="@string/btnCerrarSesion"
-            android:layout_marginTop="40dp"
             android:textColor="@color/white"
             android:textStyle="bold"
-            app:cornerRadius="20sp"/>
+            app:cornerRadius="0sp" />
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>

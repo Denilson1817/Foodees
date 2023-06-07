@@ -99,16 +99,16 @@ public class AgregarDietasActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference childRef = databaseRef.child("Paciente").child(idPaciente);
         int id = item.getItemId();
         switch (item.getItemId()){
             case R.id.item_agregarDieta:{
+                DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
+                DatabaseReference childRef = databaseRef.child("Paciente").child(idPaciente);
                 if(selectedItemPosition != -1){
-                    String itemSelected = "\n";
+                    String itemSelected = "";
                     for(int i=0;i<lvDatosPlatillos.getCount();i++){
                         if(lvDatosPlatillos.isItemChecked(i)){
-                            itemSelected += lvDatosPlatillos.getItemAtPosition(i) + "\n";
+                            itemSelected += lvDatosPlatillos.getItemAtPosition(i) + ".";
                         }
                     }
                     Toast.makeText(this, "Platillo agregado", Toast.LENGTH_SHORT).show();

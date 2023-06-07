@@ -80,11 +80,11 @@ public class RegistroActivity extends AppCompatActivity {
         confirmarPassword = confirmarContrasenaEt.getText().toString();
 
         if(TextUtils.isEmpty(nombre)){
-            Toast.makeText(this, "Ingrese nombre", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Campos vacíos", Toast.LENGTH_SHORT).show();
         }else if(!Patterns.EMAIL_ADDRESS.matcher(correo).matches()){
-            Toast.makeText(this, "Ingrese correo", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Campos vacíos", Toast.LENGTH_SHORT).show();
         }else if(TextUtils.isEmpty(password)){
-            Toast.makeText(this, "Ingrese contraseña", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Campos vacíos", Toast.LENGTH_SHORT).show();
         }else if(TextUtils.isEmpty(confirmarPassword)){
             Toast.makeText(this, "Confirme contraseña", Toast.LENGTH_SHORT).show();
         }else if(!password.equals(confirmarPassword)){

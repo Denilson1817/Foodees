@@ -49,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:visibility="gone"
                     android:text="@string/nombresPrincipalPaciente"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textStyle="bold"
                     android:textSize="20sp"/>
 
@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:visibility="gone"
                     android:text="@string/correoPrincipalPaciente"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textStyle="bold"
                     android:textSize="20sp"/>
 
@@ -78,7 +78,7 @@
         <ListView
             android:id="@+id/ListaReceta"
             android:layout_marginTop="40sp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
 

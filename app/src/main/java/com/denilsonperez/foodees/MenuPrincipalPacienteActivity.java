@@ -38,7 +38,7 @@ public class MenuPrincipalPacienteActivity extends AppCompatActivity {
     ProgressBar progresoDatos;
     DatabaseReference Pacientes;
     Intent recibir;
-    String Lista;
+    String Lista,userId;
     ListView listaReceta;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -76,25 +76,25 @@ public class MenuPrincipalPacienteActivity extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference();
     }
     private void listarDatos(){
-        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference pacienteRef = databaseRef.child("Paciente");
-        pacienteRef.addValueEventListener(new ValueEventListener() {
+        userId = user.getUid();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference userRef = database.getReference("Paciente").child(userId);
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArrayList<String> recetasList = new ArrayList<>();
-                //listaDatosPlatillo.clear();
-                for (DataSnapshot snapshot1 : snapshot.getChildren()){
-                    String receta = snapshot1.child("Receta").getValue(String.class);
-                    // Agrega el valor de "Receta" a la lista
-                    recetasList.add(receta);
+                if(snapshot.exists()){
+                    String receta = snapshot.child("Receta").getValue(String.class);
+                    if(receta != null){
+                        receta = receta.replaceAll("\\.", ".\n");
+                        recetasList.add(receta);
+                    }
                 }
-                // Configura el ListView con los datos obtenidos
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(MenuPrincipalPacienteActivity.this, android.R.layout.simple_list_item_1, recetasList);
                 listaReceta.setAdapter(adapter);
-                    //arrayAdapterPlatillo = new ArrayAdapter<Platillo>(MenuPrincipalPacienteActivity.this, android.R.layout.simple_list_item_1, listaDatosPlatillo);
-                    //lvDatosPlatillo.setAdapter(arrayAdapterPlatillo);
-
+                adapter.notifyDataSetChanged();
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
